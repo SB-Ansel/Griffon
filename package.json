@@ -1,0 +1,26 @@
+{
+  "name": "griffon",
+  "version": "1.0.0",
+  "description": "Windows Directory contents lister",
+  "main": "main.js",
+  "dependencies": {
+    "cmd": "^0.1.0",
+    "electron": "^4.0.2",
+    "node-powershell": "^3.3.1",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "SB-Ansel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SB-Ansel/Griffon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SB-Ansel/Griffon/issues"
+  },
+  "homepage": "https://github.com/SB-Ansel/Griffon#readme"
+}
