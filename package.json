@@ -1,7 +1,7 @@
 {
-  "name": "griffon",
+  "name": "Griffon",
   "version": "1.0.0",
-  "description": "Windows Directory contents lister",
+  "description": "Lists the contents of a windows directory.",
   "main": "main.js",
   "dependencies": {
     "asar": "^0.14.6",
