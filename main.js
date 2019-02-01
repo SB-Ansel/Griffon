@@ -116,3 +116,7 @@ Menu.setApplicationMenu(menu)
 
 //Initiate application
 app.on('ready', MainWindow)
+//Prevents electron sticking around after the app is closed.
+app.on('window-all-closed', () => {
+  app.quit();
+});

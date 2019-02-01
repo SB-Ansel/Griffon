@@ -4,6 +4,7 @@
   "description": "Windows Directory contents lister",
   "main": "main.js",
   "dependencies": {
+    "asar": "^0.14.6",
     "cmd": "^0.1.0",
     "electron": "^4.0.2",
     "node-powershell": "^3.3.1",
