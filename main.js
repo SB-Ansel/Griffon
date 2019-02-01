@@ -5,12 +5,14 @@ const dialog = require('electron').dialog
 const shell = require('node-powershell');
 const fs = require('fs');
 const shelly = require('electron').shell
+var path = require('path')
 
 
 function MainWindow() { // Creates the browser window.
 	win = new BrowserWindow({
 		width: 800,
 		height: 800,
+		// icon: path.join(__dirname, '/imgs/Griffon.ico'),
 		parent: MainWindow,
 		modal: true,
 		nodeIntegration: true,
