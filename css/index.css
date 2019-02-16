@@ -29,7 +29,7 @@ h5{
 }
 
 .file-upload {
-  background-color: #ffffff;
+  background-color: #0003;
   width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -75,7 +75,7 @@ left: !important 50%;
   position: absolute;
   padding: 10px;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   outline: none;
   z-index: 10;
   opacity: 0;
@@ -90,7 +90,7 @@ left: !important 50%;
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #F2F2F2;
+  background-color: #0006;
   border: 4px dashed #4d5057;
 }
 

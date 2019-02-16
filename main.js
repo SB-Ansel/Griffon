@@ -11,8 +11,8 @@ var path = require('path')
 function MainWindow() { // Creates the browser window.
 	win = new BrowserWindow({
 		width: 800,
-		height: 800,
-		// icon: path.join(__dirname, '/imgs/Griffon.ico'),
+		height: 650,
+		icon: path.join(__dirname, '/imgs/Hexagon-logo.png'),
 		parent: MainWindow,
 		modal: true,
 		nodeIntegration: true,
@@ -22,8 +22,24 @@ function MainWindow() { // Creates the browser window.
 	win.loadFile('index.html') // and load the index.html.
 }
 
+function ProgressWindow() { // Creates the browser window.
+	win = new BrowserWindow({
+		width: 400,
+		height: 250,
+		frame: false,
+		icon: path.join(__dirname, '/imgs/Hexagon-logo.png'),
+		parent: MainWindow,
+		modal: true,
+		alwaysOnTop: true,
+		nodeIntegration: true,
+		nodeIntegrationInWorker: true,
+		resizable: false
+	})
+	win.loadFile('progress.html') // and load the index.html.
+}
+
 //PowerShell Arguments
-var setLocation = "Set-Location -Path " 
+var setLocation = "Set-Location -Path "
 var cmdCommand = "; cmd /r dir /s "
 var syntax = "'" //This completes the full path on windows.
 
@@ -33,15 +49,15 @@ function PowerShell(shellArgument){
 				executionPolicy: 'Bypass',
 				noProfile: true
 			});
-	ps.addCommand(setLocation + syntax + shellArgument + syntax + cmdCommand) //Final PowerShell command.
-			ps.invoke()
-				.then(output => {
+    ps.addCommand(setLocation + syntax + shellArgument + syntax + cmdCommand) //Final PowerShell command.// ps.invoke().then($onProgress = ProgressWindow).then(ProgressWindow = true).then($onFulfilled => {
+				ProgressWindow()+ps.invoke().then(output => {
+					win.close(ProgressWindow);
 					var savePath = dialog.showSaveDialog({
 						defaultPath: '~/DirList.txt'
 					}) //Brings up Save Dialog options for the end user.
-					console.log(savePath) //Dumps path to console, might disable this once it's all working.
+					// console.log(savePath) //Dumps path to console, might disable this once it's all working.
 					fs.writeFile(savePath, output, function (err) {})
-					console.log(output);
+					// console.log(output);
 					const messageBox = {
 						type: 'info',
 						title: 'Griffon',
@@ -49,14 +65,15 @@ function PowerShell(shellArgument){
 						detail: 'File has been saved!',
 						buttons: ['Okay'],
 					}
-					dialog.showMessageBox(messageBox)
-					ps.dispose(); //Releases all resources once operation has been completed.
+          	dialog.showMessageBox(messageBox)
+						ps.dispose(); //Releases all resources once operation has been completed.
 				})
 				.catch(err => {
-					console.log(err);
+					// console.log(err);
 					ps.dispose();
 				});
 }
+
 function errorMessage(){
 	const caughtException = {
 	type: 'warning',
@@ -67,13 +84,14 @@ function errorMessage(){
 }
 	dialog.showMessageBox(caughtException)
 }
+
 //Drop Folder//
 ipc.on('filePath', (event, path) => {
-		console.log(path);
+		// console.log(path);
 		var dropFolder = path
 		dropFolder.toString();
 		PowerShell(dropFolder)//passing arguments to PowerShell function
-	});
+});
 
 //Select Folder//
 ipc.on('openDialog', function (event) {
@@ -82,8 +100,7 @@ ipc.on('openDialog', function (event) {
 		},
 		function (files) {
 			// if (files) event.sender.send('selected-file', files)
-			console.log("Folder Selected: ", files)
-
+			// console.log("Folder Selected: ", files)
 			var selectedFolder = files;
 			if (selectedFolder == null){
 					errorMessage()
@@ -91,11 +108,13 @@ ipc.on('openDialog', function (event) {
 				selectedFolder.toString();
 			PowerShell(selectedFolder);//passing arguments to PowerShell function
 			}
-			});
-		})
+	});
+})
+
 ipc.on('openExternal', function (event) {
 	shelly.openExternal('https://github.com/SB-Ansel')
 })
+
 //Error Message
 ipc.on('showWarning', function (event){
 const warningBox = {
