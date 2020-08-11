@@ -4,10 +4,12 @@
   "description": "Lists the contents of a windows directory.",
   "main": "main.js",
   "dependencies": {
-    "asar": "^0.14.6",
+    "asar": "^3.0.3",
     "cmd": "^0.1.0",
-    "electron": "^7.2.4",
-    "node-powershell": "^3.3.1",
+    "electron": "^9.2.0",
+    "g": "^2.0.1",
+    "node-powershell": "^4.0.0",
+    "npm-check-updates": "^7.0.4",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {},

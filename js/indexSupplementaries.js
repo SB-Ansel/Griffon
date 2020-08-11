@@ -1,5 +1,7 @@
 const ipc = require('electron').ipcRenderer
+
 const selectDirBtn = document.getElementById('select-file')
+
 	selectDirBtn.addEventListener('click', function (event){
 		ipc.send('openDialog')
 });	
@@ -8,6 +10,9 @@ var dropzone = document.getElementById('dropzone');
 	dropzone.ondrop = function(e) {
 var length = e.dataTransfer.items.length;
 	for (var i = 0; i < length; i++) {
+
+
+		
 var entry = e.dataTransfer.items[i].webkitGetAsEntry();
 	if (entry.isFile) {
 		// console.log("Debug; It's a File!")

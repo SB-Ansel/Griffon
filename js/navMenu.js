@@ -1,7 +1,5 @@
 // Navigation menu module
-const {
-   app
-} = require('electron');
+const {app} = require('electron');
 const shell = require('electron').shell
 
 const nav = [{
@@ -27,9 +25,6 @@ const nav = [{
          {
             type: 'separator'
          },
-         {
-            role: 'togglefullscreen'
-         }
       ]
    },
    {
@@ -46,3 +41,4 @@ const nav = [{
 module.exports = nav;
 
 //SB-Ansel 2019/01/31
+//SB-Ansel 2020.08.11
