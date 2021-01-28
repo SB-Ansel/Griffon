@@ -6,7 +6,7 @@
   "dependencies": {
     "asar": "^3.0.3",
     "cmd": "^0.1.0",
-    "electron": "^9.2.0",
+    "electron": "^9.4.0",
     "g": "^2.0.1",
     "node-powershell": "^4.0.0",
     "npm-check-updates": "^7.0.4",
